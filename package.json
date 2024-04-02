@@ -1,0 +1,26 @@
+{
+  "name": "node-proxy",
+  "version": "1.0.0",
+  "description": "Test project for node js training",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/pcherkasov/node-proxy.git"
+  },
+  "author": "pashach",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.0",
+    "mongoose": "^8.2.2",
+    "morgan": "^1.10.0"
+  }
+}
