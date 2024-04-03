@@ -18,15 +18,13 @@ asteroidApi.interceptors.request.use((config) => {
 
 function convertToResponse({near_earth_objects}) {
   return Object.values(near_earth_objects).flatMap(date => {
-    return date.map(asteroid => {
-      const {
-        id,
-        name,
-        estimated_diameter,
-        is_potentially_hazardous_asteroid,
-        close_approach_data
-      } = asteroid;
-
+    return date.map(({
+                       id,
+                       name,
+                       estimated_diameter,
+                       is_potentially_hazardous_asteroid,
+                       close_approach_data
+                     }) => {
       return {
         id,
         name,
