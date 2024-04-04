@@ -16,19 +16,19 @@ asteroidApi.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-function convertToResponse({near_earth_objects}) {
+function convertToResponse({ near_earth_objects }) {
   return Object.values(near_earth_objects).flatMap(date => {
     return date.map(({
                        id,
                        name,
-                       estimated_diameter,
+                       estimated_diameter: { estimated_diameter_min },
                        is_potentially_hazardous_asteroid,
                        close_approach_data
                      }) => {
       return {
         id,
         name,
-        diameter: estimated_diameter.meters.estimated_diameter_min,
+        diameter: estimated_diameter_min,
         is_potentially_hazardous_asteroid,
         close_approach_date_full: close_approach_data[0].close_approach_date_full,
         relative_velocity: close_approach_data[0].relative_velocity.kilometers_per_second,
@@ -40,8 +40,7 @@ function convertToResponse({near_earth_objects}) {
 function getAsteroids(startDate, endDate) {
   const url = '/feed';
   const params = {
-    start_date: startDate,
-    end_date: endDate
+    start_date: startDate, end_date: endDate
   };
 
   return asteroidApi.get(url, {params})
