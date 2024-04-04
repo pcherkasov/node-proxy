@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAsteroids} = require("./nasa-client/asteroid-client");
+const {getAsteroids} = require("./clients/nasa/asteroid");
 
 const app = express();
 const port = process.env.PORT || 3000;

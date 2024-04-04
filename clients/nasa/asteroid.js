@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const axios = require('axios');
+const {convertToResponse} = require("../../converters");
 
 const NASA_API_KEY = process.env.NASA_API_KEY || "";
 const NASA_API_URL = process.env.NASA_API_URL || "";
@@ -16,27 +17,6 @@ asteroidApi.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-function convertToResponse({ near_earth_objects }) {
-  return Object.values(near_earth_objects).flatMap(date => {
-    return date.map(({
-                       id,
-                       name,
-                       estimated_diameter: { estimated_diameter_min },
-                       is_potentially_hazardous_asteroid,
-                       close_approach_data
-                     }) => {
-      return {
-        id,
-        name,
-        diameter: estimated_diameter_min,
-        is_potentially_hazardous_asteroid,
-        close_approach_date_full: close_approach_data[0].close_approach_date_full,
-        relative_velocity: close_approach_data[0].relative_velocity.kilometers_per_second,
-      }
-    });
-  });
-}
-
 function getAsteroids(startDate, endDate) {
   const url = '/feed';
   const params = {
@@ -45,6 +25,7 @@ function getAsteroids(startDate, endDate) {
 
   return asteroidApi.get(url, {params})
     .then(response => {
+      console.info(`Get asteroids from: ${params.start_date} to: ${params.end_date}`)
       return convertToResponse(response.data);
     })
     .catch(error => {
