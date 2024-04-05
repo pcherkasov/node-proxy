@@ -1,11 +1,11 @@
-function convertToResponse({ near_earth_objects }) {
+function convertToMeteor({ near_earth_objects }) {
   return Object.values(near_earth_objects).flatMap(date => {
     return date.map(({
                        id,
                        name,
                        estimated_diameter: { estimated_diameter_min },
                        is_potentially_hazardous_asteroid,
-                       close_approach_data
+                       close_approach_data,
                      }) => {
       return {
         id,
@@ -19,4 +19,4 @@ function convertToResponse({ near_earth_objects }) {
   });
 }
 
-module.exports = convertToResponse;
+module.exports = convertToMeteor;

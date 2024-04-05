@@ -1,3 +1,3 @@
-const convertToResponse = require("./asteroid");
+const convertToMeteor = require("./asteroid");
 
-module.exports = {convertToResponse};
+module.exports = { convertToMeteor };
