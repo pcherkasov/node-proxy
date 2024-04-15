@@ -1,3 +1,3 @@
-const asteroidApi = require("./nasaApiClientConfig");
+const asteroidApi = require("./nasaApiClient");
 
 module.exports = asteroidApi;
