@@ -1,3 +1,3 @@
-const getMeteors = require('./meteorsController');
+const { getMeteors, wereDangerousMeteors, countMeteors } = require('./meteorsController');
 
-module.exports = { getMeteors };
+module.exports = { getMeteors, wereDangerousMeteors, countMeteors };

@@ -5,7 +5,8 @@ const asteroidApi = require("../../config");
 function fetchMeteors(startDate, endDate) {
   const url = '/feed';
   const params = {
-    start_date: startDate, end_date: endDate,
+    start_date: startDate,
+    end_date: endDate,
   };
 
   return asteroidApi.get(url, { params })
